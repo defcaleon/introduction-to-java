@@ -16,6 +16,10 @@ public class Main {
 
         output.printAllStudents(group);
 
+        Logic logic = new Logic();
+
+        logic.printBestStudents(group,9);
+
 
     }
 }
