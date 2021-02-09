@@ -1,5 +1,8 @@
-
+# IntellijIdea files
+*.iml
 .idea
+out
+
 /bin
 /.project
 
