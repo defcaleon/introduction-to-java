@@ -20,10 +20,16 @@ public class Main {
 
         LogicTrains logic = new LogicTrains();
 
-        logic.sortByTrainNames(trains);
-
+        System.out.println("\nsort by trains name");
         System.out.println("===================");
+        logic.sortByTrainNames(trains);
         show.showTrains(trains);
+
+        System.out.println("\nsort by destination and time");
+        System.out.println("===================");
+        logic.sortTrainsByDestinatination(trains);
+        show.showTrains(trains);
+
 
 
     }

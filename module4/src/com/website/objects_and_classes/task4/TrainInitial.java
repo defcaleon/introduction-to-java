@@ -17,7 +17,8 @@ public class TrainInitial {
                 case 0:{
 
                     trains[i].setTrainNum("ccc");
-                    trains[i].setDestination("Minsk");
+                    //trains[i].setDestination("Minsk");
+                    trains[i].setDestination("Moscow");
                     date.setHours(14);
                     date.setMinutes(28);
                     trains[i].setDate(date);

@@ -3,10 +3,10 @@ package com.website.objects_and_classes.task4;
 public class LogicTrains {
 
 
-    private  void swap(Train train1, Train train2){
-        Train temp=train1;
-        train1=train2;
-        train2=train1;
+    private  void swap(Train[] trains, int index1, int index2){
+        Train temp=trains[index1];
+        trains[index1]=trains[index2];
+        trains[index2]=temp;
     }
     public void sortByTrainNames(Train[] trains){
 
@@ -34,20 +34,14 @@ public class LogicTrains {
 
                 }
 
-                swap(trains[maxIndex],trains[trains.length - i - 1]);
-
-                /*Train temp= trains[maxIndex];
-                trains[maxIndex] = trains[trains.length - i - 1];
-                trains[trains.length - i - 1] = temp;*/
+                swap(trains,maxIndex,trains.length - i - 1);
 
                 if (minIndex == trains.length - i - 1) {
                     minIndex = maxIndex;
                 }
 
-                swap(trains[minIndex],trains[i]);
-                /*temp=trains[minIndex];
-                trains[minIndex] = trains[i];
-                trains[i] = temp;*/
+                swap(trains,minIndex,i);
+
             }
     }
 
@@ -92,37 +86,60 @@ public class LogicTrains {
 
             }
 
-            Train temp= trains[maxIndex];
-            trains[maxIndex] = trains[trains.length - i - 1];
-            trains[trains.length - i - 1] = temp;
+            swap(trains,minIndex,i);
 
             if (minIndex == trains.length - i - 1) {
                 minIndex = maxIndex;
             }
 
-            temp=trains[minIndex];
-            trains[minIndex] = trains[i];
-            trains[i] = temp;
+            swap(trains,minIndex,i);
+        }
+
+        int i=0;
+        while (i<trains.length){
+
+            int end=getEndWithSameDestination(trains,i);
+
+            sortTrainsByTime(trains,i,end);
+
+            i=end;
         }
 
     }
 
+    private int getEndWithSameDestination(Train[] trains,int start){
+
+        if(start>=trains.length)
+        {
+            return  -1;
+        }
+
+
+        int end=start;
+        String compDestin=trains[start].getDestination();
+
+        end++;
+        while (end< trains.length&&compDestin.compareTo(trains[end].getDestination())==0){
+            end++;
+        }
+
+        return  end;
+    }
+
     private  void sortTrainsByTime(Train[] trains, int start, int end) {
 
-        if(start==end){
+
+        System.out.println(trains[start].getDestination()+" "+start+" "+end);
+        if(start+1==end){
             return;
         }
 
-        for (int i = start; i <= end; i++) {
-            for (int j = start; j < end - i ; j++) {
+        for (int i = start; i < end; i++) {
+            for (int j = start; j < end - i-1 ; j++) {
 
                     if (trains[j].getDate().compareTo(trains[j + 1].getDate()) >0 ) {
-                        Train temp = trains[j];
-                        trains[j] = trains[j + 1];
-                        trains[j + 1] = temp;
+                        swap(trains,j,j+1);
                     }
-
-
 
             }
         }
