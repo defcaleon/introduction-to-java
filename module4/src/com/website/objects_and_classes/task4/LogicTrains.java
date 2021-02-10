@@ -134,14 +134,18 @@ public class LogicTrains {
             return;
         }
 
-        for (int i = start; i < end; i++) {
-            for (int j = start; j < end - i-1 ; j++) {
+        for (int i = start,index=0; i < end; i++) {
+
+
+            for (int j = start; j < end - index-1 ; j++) {
 
                     if (trains[j].getDate().compareTo(trains[j + 1].getDate()) >0 ) {
+
                         swap(trains,j,j+1);
                     }
 
             }
+            index++;
         }
 
 
